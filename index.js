@@ -1,4 +1,5 @@
 const { Client, GatewayIntentBits } = require('discord.js');
+const http = require('http');
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds]
@@ -9,3 +10,9 @@ client.once('ready', () => {
 });
 
 client.login(process.env.TOKEN);
+
+// Render için port açma
+http.createServer((req, res) => {
+  res.write("Bot çalışıyor");
+  res.end();
+}).listen(process.env.PORT || 3000);
